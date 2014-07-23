@@ -31,10 +31,10 @@ class HabitListCell: UITableViewCell {
         let eNUserHistory = NSEntityDescription.entityForName("UserHistory",inManagedObjectContext:context)
         let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
         if let hID = HabitID {
+            updateUserHistory(swHabitIsChosen.on, habitID: hID)
             if swHabitIsChosen.on == true {
                 // Insert the new habit
                 println("Habit \(hID) set to true")
-                
                 lbCellTip.text = "Tap to unchoose"
                 
                 var newChosenHabit = Habit(entity: eNChosenHabit, insertIntoManagedObjectContext: context)
@@ -50,14 +50,14 @@ class HabitListCell: UITableViewCell {
                 context.save(nil)
                 
                 addNotification(hID)
-                updateUserHistory(true)
+                
 
             } else {
                 // Delete the select habit
                 println("Habit \(hID) set to false")
                 self.lbCellTip.text = "Tap to choose"
                 var ChosenHabits = context.executeFetchRequest(fRChosenHabit, error:nil)
-                
+                deleteNotification(hID)
                 for (var i = 0 as Int; i < ChosenHabits.count; ++i) {
                     var selectedHabit: NSManagedObject = ChosenHabits[i] as NSManagedObject
                     var tempID = selectedHabit.valueForKeyPath("habitID") as Int
@@ -78,8 +78,6 @@ class HabitListCell: UITableViewCell {
                         context.save(nil)
                     }
                 }
-                deleteNotification(hID)
-                updateUserHistory(false)
             }
         }
     }
@@ -130,7 +128,7 @@ class HabitListCell: UITableViewCell {
         return date
     }
     
-    func updateUserHistory(Insert: Bool) {
+    func updateUserHistory(Insert: Bool, habitID: Int) {
         let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context: NSManagedObjectContext = appDel.managedObjectContext
         let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
@@ -156,6 +154,19 @@ class HabitListCell: UITableViewCell {
             } else {
                 // A habit is deleted by user
                 historyEntry.decreaseTotal()
+                // Decide if the completedCount needs to be decreased
+                let fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
+                fRDisplayHabit.predicate = NSPredicate(format: "habitID == %@", argumentArray: [habitID])
+                println("fRDisplayHabit: \(fRDisplayHabit)")
+                let userDisplay = context.executeFetchRequest(fRDisplayHabit, error:nil)
+                println("userDisplay: \(userDisplay)")
+                if (0 != userDisplay.count) {
+                    println("decreaseCompleted")
+                    var selectedHabit: Habit = userDisplay[0] as Habit
+                    if (1 == selectedHabit.isCompleted) {
+                        historyEntry.decreaseCompleted()
+                    }
+                }
             }
         } else {
             // There is not yet an entry in the entity UserHistory

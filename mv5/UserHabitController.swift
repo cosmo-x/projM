@@ -311,7 +311,7 @@ class UserHabitController: UITableViewController {
         let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context: NSManagedObjectContext = appDel.managedObjectContext
         let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
-        let searchText = [(getCurrentDate())]
+        let searchText = [getCurrentDate()]
         
         var pred: NSPredicate = NSPredicate(format: "date = %@", argumentArray: searchText)        
         var fRUserHistory = NSFetchRequest(entityName: "UserHistory")

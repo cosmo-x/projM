@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completeAction.title = "Complete"
         
         completeAction.activationMode = UIUserNotificationActivationMode.Background
-        completeAction.destructive = false
+        completeAction.destructive = true
         completeAction.authenticationRequired = false
         
         var laterAction:UIMutableUserNotificationAction = UIMutableUserNotificationAction()
@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         laterAction.title = "Later"
         
         laterAction.activationMode = UIUserNotificationActivationMode.Background
+        laterAction.destructive = false
         laterAction.authenticationRequired = false
         
         // Category

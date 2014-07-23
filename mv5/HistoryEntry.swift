@@ -25,34 +25,28 @@ class HistoryEntry: NSManagedObject {
         self.totalCount = 0
     }
     
-    func increaseTotal() {
-        var tCount: Int = totalCount as Int
-        totalCount = ++tCount
+    func decreaseCompleted() {
+        let cCount: Int = completedCount as Int
+        if (cCount > 0) {
+            self.completedCount = cCount - 1
+        }
     }
     
     func decreaseTotal() {
-        var tCount: Int = totalCount as Int
-        var cCount: Int = completedCount as Int
+        let tCount: Int = totalCount as Int
         if (tCount > 0) {
-            --tCount
-            if (cCount > 0) {
-                --cCount
-                completedCount = cCount
-            }
-            totalCount = tCount
+            self.totalCount = tCount - 1
         }
     }
     
     func increaseCompleted() {
-        var cCount: Int = completedCount as Int
-        completedCount = ++cCount
+        let cCount: Int = completedCount as Int
+        self.completedCount = cCount + 1
     }
     
-    func decreaseCompleted() {
-        var cCount: Int = completedCount as Int
-        if (cCount > 0) {
-            --cCount
-            completedCount = cCount
-        }
+    func increaseTotal() {
+        let tCount: Int = totalCount as Int
+        self.totalCount = tCount + 1
     }
+    
 }
