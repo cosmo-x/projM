@@ -115,7 +115,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             newNotification.alertBody = notification!.alertBody
             newNotification.applicationIconBadgeNumber = 1
             newNotification.alertLaunchImage = notification!.alertLaunchImage
-            newNotification.fireDate = notification!.fireDate.dateByAddingTimeInterval(3600)
+            
+            // Make sure the new fireDate doesn't exceed the time range
+            let endNotificationHour: Float = 22
+            let components: NSDateComponents = NSCalendar().components (.CalendarUnitHour , fromDate: notification!.fireDate)
+            if (21 > components.hour) {
+                newNotification.fireDate = notification!.fireDate.dateByAddingTimeInterval(3600)
+            } else if (21 == components.hour) {
+                newNotification.fireDate = notification!.fireDate.dateByAddingTimeInterval(1800)
+            } else if (22 == components.hour) {
+                newNotification.fireDate = notification!.fireDate
+            }
+            
             newNotification.repeatInterval = NSCalendarUnit.DayCalendarUnit
             
             UIApplication.sharedApplication().cancelLocalNotification(notification)
