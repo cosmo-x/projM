@@ -11,12 +11,12 @@ import CoreData
 
 class UserHabitCell: UITableViewCell {
     
-    var HabitID : Int?
+    var HabitID : Int!
     
-    @IBOutlet var imgHabit: UIImageView?
-    @IBOutlet var imgCheck: UIImageView?
-    @IBOutlet var lbHabit: UILabel?
-    @IBOutlet var lbCellTip: UILabel?
+    @IBOutlet var imgHabit: UIImageView!
+    @IBOutlet var imgCheck: UIImageView!
+    @IBOutlet var lbHabit: UILabel!
+    @IBOutlet var lbCellTip: UILabel!
 //    @IBOutlet var HabitIsCompleted: UISwitch
 //    
 //    @IBAction func valueCompletedChange(sender: AnyObject) {

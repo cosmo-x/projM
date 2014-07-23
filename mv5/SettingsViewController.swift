@@ -14,26 +14,27 @@ class SettingsViewController: UIViewController {
     let BarImageCornerRadius: CGFloat = 6.0
     
     // For top bar
-    @IBOutlet var lbTimePeriod: UILabel?
-    @IBOutlet var lbPeriodPercentage: UILabel?
+    @IBOutlet var lbTimePeriod: UILabel!
+    @IBOutlet var lbPeriodPercentage: UILabel!
     
     // For bar graph
-    @IBOutlet var imgBarSunday: UIImageView?
-    @IBOutlet var imgBarMonday: UIImageView?
-    @IBOutlet var imgBarTuesday: UIImageView?
-    @IBOutlet var imgBarWednesday: UIImageView?
-    @IBOutlet var imgBarThursday: UIImageView?
-    @IBOutlet var imgBarFriday: UIImageView?
-    @IBOutlet var imgBarSaturday: UIImageView?
+    @IBOutlet var imgBarSunday: UIImageView!
+    @IBOutlet var imgBarMonday: UIImageView!
+    @IBOutlet var imgBarTuesday: UIImageView!
+    @IBOutlet var imgBarWednesday: UIImageView!
+    @IBOutlet var imgBarThursday: UIImageView!
+    @IBOutlet var imgBarFriday: UIImageView!
+    @IBOutlet var imgBarSaturday: UIImageView!
     
     // For circle graph
-    @IBOutlet var imgAllTImeImage: UIImageView?
-    @IBOutlet var imgThisMonthImage: UIImageView?
-    @IBOutlet var imgThisWeekImage: UIImageView?
-    @IBOutlet var lbAllTimePercentage: UILabel?
-    @IBOutlet var lbThisMonthPercentage: UILabel?
-    @IBOutlet var lbThisWeekPercentage: UILabel?
+    @IBOutlet var imgAllTImeImage: UIImageView!
+    @IBOutlet var imgThisMonthImage: UIImageView!
+    @IBOutlet var imgThisWeekImage: UIImageView!
+    @IBOutlet var lbAllTimePercentage: UILabel!
+    @IBOutlet var lbThisMonthPercentage: UILabel!
+    @IBOutlet var lbThisWeekPercentage: UILabel!
 
+    @IBOutlet weak var adsfasf: UIImageView!
     // For cell
     
     override func viewDidLoad() {
@@ -106,7 +107,7 @@ class SettingsViewController: UIViewController {
         formatter.timeStyle = .NoStyle
         let strStartDateOfWeek = formatter.stringFromDate(startDateOfWeek)
         let strEndDateOfWeek = formatter.stringFromDate(endDateOfWeek)
-        lbTimePeriod!.text = "\(strStartDateOfWeek) - \(strEndDateOfWeek)"
+        lbTimePeriod.text = "\(strStartDateOfWeek) - \(strEndDateOfWeek)"
         
         // Setting the array for current week
         for (var i = 1; i <= dayOfWeek; ++i) {
@@ -161,8 +162,8 @@ class SettingsViewController: UIViewController {
         if (0 != weekPercentage) {
             weekPercentage = weekPercentage / entryCount
         }
-        lbPeriodPercentage!.text = "\(Int((weekPercentage) * 100))%"
-        lbThisWeekPercentage!.text = "\(Int((weekPercentage) * 100))%"
+        lbPeriodPercentage.text = "\(Int((weekPercentage) * 100))%"
+        lbThisWeekPercentage.text = "\(Int((weekPercentage) * 100))%"
         
         // Setting the circle image
         setCircleImage(imgThisWeekImage!,percentage: 0.00)
@@ -187,7 +188,7 @@ class SettingsViewController: UIViewController {
         }
         
         // Setting the circle
-        lbThisMonthPercentage!.text = "\(Int((monthPercentage) * 100))%"
+        lbThisMonthPercentage.text = "\(Int((monthPercentage) * 100))%"
         setCircleImage(imgThisMonthImage!,percentage: 0.46)
     }
     
@@ -201,7 +202,7 @@ class SettingsViewController: UIViewController {
             allPercentage = 0
         }
         // Setting the circle
-        lbAllTimePercentage!.text = "\(Int((allPercentage) * 100))%"
+        lbAllTimePercentage.text = "\(Int((allPercentage) * 100))%"
         setCircleImage(imgAllTImeImage!,percentage: 1.00)
     }
     

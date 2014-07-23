@@ -49,24 +49,83 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let mySettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories)
         
-        UIApplication.sharedApplication().registerUserNotificationSettings(mySettings) 
+        UIApplication.sharedApplication().registerUserNotificationSettings(mySettings)
+        application.applicationIconBadgeNumber = 0
         
         return true
     }
     
-    func application(application: UIApplication!,
-        handleActionWithIdentifier identifier:String!,
-        forLocalNotification notification:UILocalNotification!,
-        completionHandler: (() -> Void)!){
-            
-            if (identifier == "COMPLETE_ACTION"){
-                println("identifier == COMPLETE_ACTION")
-                NSNotificationCenter.defaultCenter().postNotificationName("completePressed", object: nil)
-            } else if (identifier == "LATER_ACTION") {
-                println("identifier == LATER_ACTION")
-                NSNotificationCenter.defaultCenter().postNotificationName("laterPressed", object: nil)
+    func application(application: UIApplication!, handleActionWithIdentifier identifier:String!, forLocalNotification notification: UILocalNotification!, completionHandler: (() -> Void)!){
+        
+        application.applicationIconBadgeNumber += notification.applicationIconBadgeNumber
+        
+        let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        let context: NSManagedObjectContext = appDel.managedObjectContext
+        let eNChosenHabit = NSEntityDescription.entityForName("UserChosenHabit",inManagedObjectContext:context)
+        let eNUserHistory = NSEntityDescription.entityForName("UserHistory",inManagedObjectContext:context)
+        let fRChosenHabit = NSFetchRequest(entityName: "UserChosenHabit")
+        
+        let fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
+        let hID = notification.userInfo["habitID"]! as Int
+        let predDisplayHaibit: NSPredicate = NSPredicate(format: "habitID = %@", argumentArray: [hID])
+        fRDisplayHabit.predicate = predDisplayHaibit
+        
+        let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
+        let searchHistoryText = [getCurrentDate()]
+        let predHistory: NSPredicate = NSPredicate(format: "date = %@", argumentArray: searchHistoryText)
+        fRUserHistory.predicate = predHistory
+        
+        var userChosenHabitList = context.executeFetchRequest(fRChosenHabit, error:nil)
+        var userDisplayHabitList = context.executeFetchRequest(fRDisplayHabit, error:nil)
+        var UserHistory = context.executeFetchRequest(fRUserHistory, error:nil)
+        
+        if (identifier == "COMPLETE_ACTION"){
+            println("identifier == COMPLETE_ACTION")
+            // Upadate the entity UserHistory
+            if (UserHistory.count != 0) {
+                // There is already an entry for current day in the entity UserHistory
+                var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
+                historyEntry = UserHistory[0] as HistoryEntry
+                historyEntry.increaseCompleted()
+            } else {
+                // There is not yet an entry for current day in the entity UserHistory
+                var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
+                historyEntry.reset()
+                historyEntry.totalCount = userChosenHabitList.count as NSNumber
+                historyEntry.increaseCompleted()
             }
-            completionHandler()
+            // Upadate the entity UserDisplayHabit
+            userDisplayHabitList[0].setValue(true, forKey: "isCompleted")
+            
+        } else if (identifier == "LATER_ACTION") {
+            println("identifier == LATER_ACTION")
+            // Upadate the entity UserHistory
+            if (UserHistory.count == 0) {
+                // There is not yet an entry for current day in the entity UserHistory
+                var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
+                historyEntry.reset()
+                historyEntry.totalCount = userChosenHabitList.count as NSNumber
+            }
+            
+            // Delay the corresponding notification for 1 hour
+
+            var newNotification: UILocalNotification = UILocalNotification()
+            newNotification.category = notification!.category
+            newNotification.userInfo = notification!.userInfo
+            newNotification.alertBody = notification!.alertBody
+            newNotification.applicationIconBadgeNumber = 1
+            newNotification.alertLaunchImage = notification!.alertLaunchImage
+            newNotification.fireDate = notification!.fireDate.dateByAddingTimeInterval(3600)
+            newNotification.repeatInterval = NSCalendarUnit.DayCalendarUnit
+            
+            UIApplication.sharedApplication().cancelLocalNotification(notification)
+            UIApplication.sharedApplication().scheduleLocalNotification(newNotification)
+            
+            println("AFTER LATER_ACTION the notification: \(UIApplication.sharedApplication().scheduledLocalNotifications)")
+            
+        }
+        context.save(nil)
+        completionHandler()
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -178,6 +237,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var applicationDocumentsDirectory: NSURL {
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         return urls[urls.endIndex-1] as NSURL
+    }
+    
+    func getCurrentDate() -> NSDate {
+        let currentCalendar = NSCalendar.currentCalendar()
+        let components: NSDateComponents = currentCalendar.components (.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay , fromDate: NSDate())
+        return currentCalendar.dateFromComponents(components)
     }
 
 }

@@ -13,10 +13,10 @@ class HabitListCell: UITableViewCell {
     
     var HabitID: Int?
     
-    @IBOutlet var imgHabit: UIImageView?
-    @IBOutlet var lbHabit: UILabel?
-    @IBOutlet var lbCellTip: UILabel?
-    @IBOutlet var swHabitIsChosen: UISwitch?
+    @IBOutlet var imgHabit: UIImageView!
+    @IBOutlet var lbHabit: UILabel!
+    @IBOutlet var lbCellTip: UILabel!
+    @IBOutlet var swHabitIsChosen: UISwitch!
         
     @IBAction func valueChosenChange(sender: AnyObject) {
         let appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
@@ -31,21 +31,21 @@ class HabitListCell: UITableViewCell {
         let eNUserHistory = NSEntityDescription.entityForName("UserHistory",inManagedObjectContext:context)
         let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
         if let hID = HabitID {
-            if swHabitIsChosen!.on == true {
+            if swHabitIsChosen.on == true {
                 // Insert the new habit
                 println("Habit \(hID) set to true")
                 
-                lbCellTip!.text = "Tap to unchoose"
+                lbCellTip.text = "Tap to unchoose"
                 
                 var newChosenHabit = Habit(entity: eNChosenHabit, insertIntoManagedObjectContext: context)
                 newChosenHabit.setValue(hID, forKey: "habitID")
-                newChosenHabit.setValue(lbHabit!.text, forKey: "habitName")
+                newChosenHabit.setValue(lbHabit.text, forKey: "habitName")
                 newChosenHabit.setValue(false, forKey: "isCompleted")
                 newChosenHabit.setValue(getCurrentDate(),forKey: "noteTime")
                 
                 var newDisplayHabit = Habit(entity: eNDisplayHabit, insertIntoManagedObjectContext: context)
                 newDisplayHabit.setValue(hID, forKey: "habitID")
-                newDisplayHabit.setValue(lbHabit!.text, forKey: "habitName")
+                newDisplayHabit.setValue(lbHabit.text, forKey: "habitName")
                 newDisplayHabit.setValue(false, forKey: "isCompleted")
                 context.save(nil)
                 
@@ -55,7 +55,7 @@ class HabitListCell: UITableViewCell {
             } else {
                 // Delete the select habit
                 println("Habit \(hID) set to false")
-                self.lbCellTip!.text = "Tap to choose"
+                self.lbCellTip.text = "Tap to choose"
                 var ChosenHabits = context.executeFetchRequest(fRChosenHabit, error:nil)
                 
                 for (var i = 0 as Int; i < ChosenHabits.count; ++i) {
@@ -174,16 +174,16 @@ class HabitListCell: UITableViewCell {
     
     func addNotification(habitID: Int) {
         println("addNotification for habit \(habitID)")
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"actionComplete", name: "completePressed", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:"actionLater", name: "laterPressed", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:"actionComplete:", name: "completePressed", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector:"actionLater:", name: "laterPressed", object: nil)
         
-        let alertText = self.lbHabit!.text
+        let alertText = self.lbHabit.text
         var notification:UILocalNotification = UILocalNotification()
         notification.category = "FIRST_CATEGORY"
         notification.userInfo = ["habitID": Int(self.HabitID!)]
         notification.alertBody = "Have you \(alertText) today?"
         notification.alertLaunchImage = "iconHabit\(self.HabitID).png"
-        notification.applicationIconBadgeNumber++
+        notification.applicationIconBadgeNumber = 1
         notification.fireDate = getRandomNotificationTime()
         notification.repeatInterval = NSCalendarUnit.DayCalendarUnit
         
@@ -212,51 +212,51 @@ class HabitListCell: UITableViewCell {
         println("-----> Notification: \(UIApplication.sharedApplication().scheduledLocalNotifications)")
     }
     
-    func actionComplete(notification:NSNotification) {
-        println("actionComplete: Do nothing")
-        println(notification.userInfo)
-       
-    }
+//    func actionComplete(notification:NSNotification) {
+//        println("actionComplete: Do nothing")
+//        println(notification.userInfo)
+//       
+//    }
     
-    func actionLater(notification:NSNotification) {
-        println("actionLater: Do nothing")
-//        // Delete the current notification
-//        var notification: UILocalNotification?
-//        var notify: UILocalNotification
-//        for (var i = 0; i < UIApplication.sharedApplication().scheduledLocalNotifications.count; ++i) {
-//            notify = UIApplication.sharedApplication().scheduledLocalNotifications[i] as UILocalNotification
-//            let notifyID: Int = notify.userInfo["habitID"]! as Int
-//            if(notifyID == hID) {
-//                notification = notify as UILocalNotification
-//                println("Deleting notification for habit \(notification!.userInfo)")
-//                break
-//            }
-//        }
-//        if notification {
-//            println("$$$ Successfully find corresponding notification")
-//            UIApplication.sharedApplication().cancelLocalNotification(notification)
-//        } else {
-//            println("!!!Cannot find corresponding notification")
-//        }
-//        println("-----> Notification: \(UIApplication.sharedApplication().scheduledLocalNotifications)")
-//        
-//        // Add notification
-//        println("addNotification for habit \(habitID)")
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector:"actionComplete:", name: "completePressed", object: nil)
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector:"actionLater:", name: "laterPressed", object: nil)
-//        
-//        let alertText = self.lbHabit.text
-//        var notification:UILocalNotification = UILocalNotification()
-//        notification.category = "FIRST_CATEGORY"
-//        notification.userInfo = ["habitID": Int(self.HabitID!)]
-//        notification.alertBody = "Have you \(alertText) today?"
-//        notification.alertLaunchImage = "iconHabit\(self.HabitID).png"
-//        notification.applicationIconBadgeNumber++
-//        notification.fireDate = getRandomNotificationTime()
-//        notification.repeatInterval = NSCalendarUnit.DayCalendarUnit
-//        
-//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//        println("-----> Notification: \(UIApplication.sharedApplication().scheduledLocalNotifications)")
-    }
+//    func actionLater(notification:NSNotification) {
+//        println("actionLater: Do nothing")
+////        // Delete the current notification
+////        var notification: UILocalNotification?
+////        var notify: UILocalNotification
+////        for (var i = 0; i < UIApplication.sharedApplication().scheduledLocalNotifications.count; ++i) {
+////            notify = UIApplication.sharedApplication().scheduledLocalNotifications[i] as UILocalNotification
+////            let notifyID: Int = notify.userInfo["habitID"]! as Int
+////            if(notifyID == hID) {
+////                notification = notify as UILocalNotification
+////                println("Deleting notification for habit \(notification!.userInfo)")
+////                break
+////            }
+////        }
+////        if notification {
+////            println("$$$ Successfully find corresponding notification")
+////            UIApplication.sharedApplication().cancelLocalNotification(notification)
+////        } else {
+////            println("!!!Cannot find corresponding notification")
+////        }
+////        println("-----> Notification: \(UIApplication.sharedApplication().scheduledLocalNotifications)")
+////        
+////        // Add notification
+////        println("addNotification for habit \(habitID)")
+////        NSNotificationCenter.defaultCenter().addObserver(self, selector:"actionComplete:", name: "completePressed", object: nil)
+////        NSNotificationCenter.defaultCenter().addObserver(self, selector:"actionLater:", name: "laterPressed", object: nil)
+////        
+////        let alertText = self.lbHabit.text
+////        var notification:UILocalNotification = UILocalNotification()
+////        notification.category = "FIRST_CATEGORY"
+////        notification.userInfo = ["habitID": Int(self.HabitID!)]
+////        notification.alertBody = "Have you \(alertText) today?"
+////        notification.alertLaunchImage = "iconHabit\(self.HabitID).png"
+////        notification.applicationIconBadgeNumber++
+////        notification.fireDate = getRandomNotificationTime()
+////        notification.repeatInterval = NSCalendarUnit.DayCalendarUnit
+////        
+////        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+////        println("-----> Notification: \(UIApplication.sharedApplication().scheduledLocalNotifications)")
+//    }
     
 }

@@ -11,7 +11,7 @@ import CoreData
 
 class UserHabitController: UITableViewController {
     
-    @IBOutlet strong var StartPageView: UITableView?
+    @IBOutlet strong var StartPageView: UITableView!
     
     let txtCellIsChosen = " Completed !"
     let txtCellNotChosen = "Tap to complete"
@@ -56,9 +56,9 @@ class UserHabitController: UITableViewController {
         
         if (userChosenHabitListCount == 0) {
             // No habit is chosen by user
-            StartPageView!.backgroundView = UIImageView(image: UIImage(named: "imgStart"))
+            StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgStart"))
         } else if (userDisplayHabitListCount == 0) {
-            StartPageView!.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
+            StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
         } else {
             for (var i = 0; i < userDisplayHabitListCount; ++i) {
                 var data: NSManagedObject = userDisplayHabitList[i] as NSManagedObject
@@ -68,10 +68,10 @@ class UserHabitController: UITableViewController {
                 }
             }
             if (true == allDisplayHabitDone) {
-                StartPageView!.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
+                StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
             }
             else {
-                StartPageView!.backgroundView = UIImageView(image: UIImage(named: "imgEmpty"))
+                StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgEmpty"))
             }
         }
         self.tableView.reloadData()
@@ -114,21 +114,21 @@ class UserHabitController: UITableViewController {
     }
 
     
-    override func tableView(tableView: UITableView?, cellForRowAtIndexPath indexPath: NSIndexPath?) -> UITableViewCell? {
+    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath?) -> UITableViewCell? {
         // Configure the cell...
-        var cell: UserHabitCell = tableView!.dequeueReusableCellWithIdentifier("UserHabitCell", forIndexPath: indexPath) as UserHabitCell
+        var cell: UserHabitCell = tableView.dequeueReusableCellWithIdentifier("UserHabitCell", forIndexPath: indexPath) as UserHabitCell
         
         if let ip = indexPath{
             var data: NSManagedObject = userDisplayHabitList[ip.row] as NSManagedObject
             cell.HabitID = data.valueForKeyPath("habitID") as? Int
-            cell.lbHabit!.text = data.valueForKeyPath("habitName") as String
-            cell.imgHabit!.image = UIImage(named: "iconHabit\(cell.HabitID!)")
+            cell.lbHabit.text = data.valueForKeyPath("habitName") as String
+            cell.imgHabit.image = UIImage(named: "iconHabit\(cell.HabitID!)")
             if (true == (data.valueForKeyPath("isCompleted") as Bool)) {
-                cell.lbCellTip!.text = txtCellIsChosen
-                cell.imgCheck!.image = UIImage(named: "iconChecked")
+                cell.lbCellTip.text = txtCellIsChosen
+                cell.imgCheck.image = UIImage(named: "iconChecked")
             } else {
-                cell.lbCellTip!.text = txtCellNotChosen
-                cell.imgCheck!.image = UIImage(named: "iconUnchecked")
+                cell.lbCellTip.text = txtCellNotChosen
+                cell.imgCheck.image = UIImage(named: "iconUnchecked")
             }
         }
         
@@ -144,14 +144,14 @@ class UserHabitController: UITableViewController {
     
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView?, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath?) {
+    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath?) {
         
         let appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context:NSManagedObjectContext = appDel.managedObjectContext
 
         var fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
         
-        var cell: UserHabitCell = tableView!.dequeueReusableCellWithIdentifier("UserHabitCell", forIndexPath: indexPath) as UserHabitCell
+        var cell: UserHabitCell = tableView.dequeueReusableCellWithIdentifier("UserHabitCell", forIndexPath: indexPath) as UserHabitCell
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
             // Delete the row from the data source
@@ -159,7 +159,7 @@ class UserHabitController: UITableViewController {
             if let tV = tableView {
                 // Delete the corresponding notification
                 if (cell.HabitID) {
-                    deleteNotification(cell.HabitID!)
+                    deleteTodayNotification(cell.HabitID!)
                 }
                 context.deleteObject(userDisplayHabitList[indexPath!.row] as NSManagedObject)
                 userDisplayHabitList.removeAtIndex(indexPath!.row)
@@ -169,7 +169,7 @@ class UserHabitController: UITableViewController {
                 
                 var updatedCount = userDisplayHabitList.count
                 if (0 == updatedCount) {
-                    StartPageView!.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
+                    StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
                 } else {
                     var allCompleted = true
                     for (var i = 0; i < updatedCount; i++) {
@@ -180,7 +180,7 @@ class UserHabitController: UITableViewController {
                         }
                     }
                     if (true == allCompleted) {
-                        StartPageView!.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
+                        StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
                     }
                 }
             }
@@ -191,15 +191,15 @@ class UserHabitController: UITableViewController {
     
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let theSelectedCell: UserHabitCell = tableView.cellForRowAtIndexPath(indexPath) as UserHabitCell
-        if (txtCellIsChosen != theSelectedCell.lbCellTip!.text) {
+        if (txtCellIsChosen != theSelectedCell.lbCellTip.text) {
             // Only select the cell if the cell is not yet selected
             println("cell select")
-            theSelectedCell.lbCellTip!.text = txtCellIsChosen
-            theSelectedCell.imgCheck!.image = UIImage(named: "iconChecked")
+            theSelectedCell.lbCellTip.text = txtCellIsChosen
+            theSelectedCell.imgCheck.image = UIImage(named: "iconChecked")
             
             // Delete the corresponding notification
             if (theSelectedCell.HabitID) {
-                deleteNotification(theSelectedCell.HabitID!)
+                deleteTodayNotification(theSelectedCell.HabitID!)
             }
             
             let appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
@@ -219,7 +219,7 @@ class UserHabitController: UITableViewController {
                 }
             }
             if (true == allCompleted) {
-                StartPageView!.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
+                StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
             }
             context.save(nil)
             
@@ -281,10 +281,10 @@ class UserHabitController: UITableViewController {
         return currentCalendar.dateFromComponents(components)
     }
     
-    func deleteNotification(habitID: Int) {
+    func deleteTodayNotification(habitID: Int) {
         println("deleteNotification for habit \(habitID)")
         var notification: UILocalNotification?
-        var notify: UILocalNotification
+        var notify: UILocalNotification?
         for notify in UIApplication.sharedApplication().scheduledLocalNotifications {
             if(notify.userInfo!.valueForKey("habitID") as NSObject == habitID) {
                 notification = notify as? UILocalNotification
@@ -292,24 +292,30 @@ class UserHabitController: UITableViewController {
             }
         }
         if notification {
+            var newNotification: UILocalNotification = UILocalNotification()
+            newNotification.category = notification!.category
+            newNotification.userInfo = notification!.userInfo
+            newNotification.alertBody = notification!.alertBody
+            newNotification.applicationIconBadgeNumber = 1
+            newNotification.alertLaunchImage = notification!.alertLaunchImage
+            newNotification.fireDate = notification!.fireDate.dateByAddingTimeInterval(86400)
+            newNotification.repeatInterval = NSCalendarUnit.DayCalendarUnit
+
             UIApplication.sharedApplication().cancelLocalNotification(notification)
+            UIApplication.sharedApplication().scheduleLocalNotification(newNotification)
         }
-        println("Notification: \(UIApplication.sharedApplication().scheduledLocalNotifications)")
+        println("AFTER deleteTodayNotification: \(UIApplication.sharedApplication().scheduledLocalNotifications)")
     }
-    
+        
     func updateUserHistory() {
         let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context: NSManagedObjectContext = appDel.managedObjectContext
         let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
         let searchText = [(getCurrentDate())]
-        println("SearchText: \(searchText)")
         
-        var pred: NSPredicate = NSPredicate(format: "date = %@", argumentArray: searchText)
-        println("Predicate: \(pred)")
-        
+        var pred: NSPredicate = NSPredicate(format: "date = %@", argumentArray: searchText)        
         var fRUserHistory = NSFetchRequest(entityName: "UserHistory")
         fRUserHistory.predicate = pred
-        println("Fetch request: \(fRUserHistory)")
         
         var UserHistory = context.executeFetchRequest(fRUserHistory, error:nil)
         
