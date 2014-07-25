@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>mW.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>mWidget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>mv5.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +28,21 @@
 			<true/>
 		</dict>
 		<key>6D252595196B672200932F2A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D890C0519823B4D00C72A33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D890C211982412D00C72A33</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D890C391982457F00C72A33</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -35,7 +35,12 @@ class SettingsViewController: UIViewController {
     @IBOutlet var lbThisWeekPercentage: UILabel!
 
     @IBOutlet weak var adsfasf: UIImageView!
+    
     // For cell
+    @IBAction func btnClearStats(sender: AnyObject) {
+        clearStats()
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -293,6 +298,33 @@ class SettingsViewController: UIViewController {
         }
         println(percentage)
         return (percentage, found)
+    }
+    
+    func clearStats() {
+        let appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        let context:NSManagedObjectContext = appDel.managedObjectContext
+        let fRChosenHabit = NSFetchRequest(entityName: "UserChosenHabit")
+        let fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
+        let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
+        
+        let userChosenHabit: [Habit] = context.executeFetchRequest(fRChosenHabit, error:nil) as [Habit]
+        let userDisplayHabit: [Habit] = context.executeFetchRequest(fRDisplayHabit, error:nil) as [Habit]
+        let userHistory: [HistoryEntry] = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
+        
+        let userChosenHabitCount: Int = userChosenHabit.count
+        let userDisplayHabitCount: Int = userDisplayHabit.count
+        let userHistoryCount: Int = userHistory.count
+        
+        for (var i = 0; i < userChosenHabitCount; ++i) {
+            context.deleteObject(userChosenHabit[i])
+        }
+        for (var i = 0; i < userDisplayHabitCount; ++i) {
+            context.deleteObject(userDisplayHabit[i])
+        }
+        for (var i = 0; i < userHistoryCount; ++i) {
+            context.deleteObject(userHistory[i])
+        }
+        context.save(nil)
     }
     
 }

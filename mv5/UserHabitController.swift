@@ -16,12 +16,13 @@ class UserHabitController: UITableViewController {
     let txtCellIsChosen = " Completed !"
     let txtCellNotChosen = "Tap to complete"
     
-    var userChosenHabitList : Array<AnyObject> = []
-    var userDisplayHabitList : Array<AnyObject> = []
+    var userChosenHabitList : [Habit]
+    var userDisplayHabitList : [Habit]
     
     init(coder aDecoder: NSCoder!) {
         StartPageView = UITableView ()
-        
+        userChosenHabitList = []
+        userDisplayHabitList = []
         super.init(coder: aDecoder)
         super.clearsSelectionOnViewWillAppear = false
     }
@@ -43,8 +44,8 @@ class UserHabitController: UITableViewController {
         let fRChosenHabit = NSFetchRequest(entityName: "UserChosenHabit")
         let fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
         
-        userChosenHabitList = context.executeFetchRequest(fRChosenHabit, error:nil)
-        userDisplayHabitList = context.executeFetchRequest(fRDisplayHabit, error:nil)
+        userChosenHabitList = context.executeFetchRequest(fRChosenHabit, error:nil) as [Habit]
+        userDisplayHabitList = context.executeFetchRequest(fRDisplayHabit, error:nil) as [Habit]
         
         println("userChosenHabitList.count = \(userChosenHabitList.count)")
         println("userDisplayHabitList.count = \(userDisplayHabitList.count)")
@@ -58,8 +59,13 @@ class UserHabitController: UITableViewController {
             StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgStart"))
         } else if (isTodayNew()) {
             // It is a new day today
+            
             // Update userDisplayHabitList
+            for (var i = 0; i < userDisplayHabitListCount; ++i) {
+                context.deleteObject(userDisplayHabitList[i])
+            }
             userDisplayHabitList.removeAll(keepCapacity: false)
+
             for (var i = 0; i < userChosenHabitListCount; ++i) {
                 var selectedHabit: NSManagedObject = userChosenHabitList[i] as NSManagedObject
                 var hID = selectedHabit.valueForKeyPath("habitID") as Int
@@ -93,28 +99,6 @@ class UserHabitController: UITableViewController {
         self.tableView.reloadData()
     }
     
-        
-        
-//        } else if (userDisplayHabitListCount == 0) {
-//            StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
-//        } else {
-//            for (var i = 0; i < userDisplayHabitListCount; ++i) {
-//                var data: NSManagedObject = userDisplayHabitList[i] as NSManagedObject
-//                if ((data.valueForKeyPath("isCompleted") as Bool?) == false) {
-//                    allDisplayHabitDone = false
-//                    break
-//                }
-//            }
-//            if (true == allDisplayHabitDone) {
-//                StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
-//            }
-//            else {
-//                StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgEmpty"))
-//            }
-//        }
-//        self.tableView.reloadData()
-    
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -197,7 +181,7 @@ class UserHabitController: UITableViewController {
                 userDisplayHabitList.removeAtIndex(indexPath!.row)
                 context.save(nil)
                 
-                userDisplayHabitList = context.executeFetchRequest(fRDisplayHabit, error:nil)
+                userDisplayHabitList = context.executeFetchRequest(fRDisplayHabit, error:nil) as [Habit]
                 
                 let updatedCount = userDisplayHabitList.count
                 if (0 == updatedCount) {

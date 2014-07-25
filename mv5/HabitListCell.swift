@@ -125,29 +125,6 @@ class HabitListCell: UITableViewCell {
         println("Notification time = \(date)")
         return date
     }
-    
-//    func updateUserHistory(totalCount: Int) {
-//        let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-//        let context: NSManagedObjectContext = appDel.managedObjectContext
-//        let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
-//        
-//        let pred: NSPredicate = NSPredicate(format: "date = %@", argumentArray: [getCurrentDate()])
-//        let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
-//        fRUserHistory.predicate = pred
-//        
-//        var UserHistory: [HistoryEntry] = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
-//        
-//        if (0 == UserHistory.count) {
-//            // There is not yet an entry in the entity UserHistory
-//            insertUserHistory(0, tCount: totalCount)
-//        } else {
-//            // There is already an entry in the entity UserHistory
-//            UserHistory[0].increaseCompleted()
-//        }
-//        context.save(nil)
-//        UserHistory = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
-//        println("Updated UserHistory \(UserHistory)")
-//    }
 
     func insertUserHistory (tCount: Int) {
         let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
