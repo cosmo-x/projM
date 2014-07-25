@@ -219,20 +219,18 @@ class SettingsViewController: UIViewController {
         let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context: NSManagedObjectContext = appDel.managedObjectContext
         let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
-        let searchText = [date]
-        
-        let pred: NSPredicate = NSPredicate(format: "date = %@", argumentArray: searchText)
         let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
-        fRUserHistory.predicate = pred
+        fRUserHistory.predicate = NSPredicate(format: "date = %@", argumentArray: [date])
         
         let userHistory = context.executeFetchRequest(fRUserHistory, error:nil)
         
         if (userHistory.count != 0) {
             found = true
-            var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
-            historyEntry = userHistory[0] as HistoryEntry
-            var totalCount: Float = Float(historyEntry.totalCount)
-            var completedCount: Float = Float(historyEntry.completedCount)
+            
+            var historyEntry: [HistoryEntry] = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
+
+            var totalCount: Float = Float(historyEntry[0].totalCount)
+            var completedCount: Float = Float(historyEntry[0].completedCount)
             if (0 == totalCount) {
                 percentage = 0
             } else {
@@ -253,21 +251,19 @@ class SettingsViewController: UIViewController {
         let pred: NSPredicate = NSPredicate(format: "monthIndex == %@", "\(monthIndex)")
         let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
         fRUserHistory.predicate = pred
-        let userHistory = context.executeFetchRequest(fRUserHistory, error:nil)
+        let userHistory: [HistoryEntry] = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
         println("countInMonth = \(userHistory.count)")
         if (userHistory.count != 0) {
             found = true
-            var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
             for (var i = 0; i < userHistory.count; ++i) {
-                historyEntry = userHistory[i] as HistoryEntry
-                if (0 != historyEntry.totalCount) {
-                    percentage += Float(historyEntry.completedCount) / Float(historyEntry.totalCount)
+                if (0 != userHistory[i].totalCount) {
+                    percentage += Float(userHistory[i].completedCount) / Float(userHistory[i].totalCount)
                     ++count
                 }
             }
-            percentage /= count
-        } else {
-            percentage = 0
+            if (0 != count) {
+                percentage /= count
+            }
         }
         return (percentage, found)
     }
@@ -281,21 +277,19 @@ class SettingsViewController: UIViewController {
         let context: NSManagedObjectContext = appDel.managedObjectContext
         let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
         let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
-        let userHistory = context.executeFetchRequest(fRUserHistory, error:nil)
+        let userHistory: [HistoryEntry] = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
         println(userHistory)
         if (userHistory.count != 0) {
             found = true
-            var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
             for (var i = 0; i < userHistory.count; ++i) {
-                historyEntry = userHistory[i] as HistoryEntry
-                if (0 != historyEntry.totalCount) {
-                    percentage += Float(historyEntry.completedCount) / Float(historyEntry.totalCount)
+                if (0 != userHistory[i].totalCount) {
+                    percentage += Float(userHistory[i].completedCount) / Float(userHistory[i].totalCount)
                     ++count
                 }
             }
-            percentage /= count
-        } else {
-            percentage = 0
+            if (0 != count) {
+                percentage /= count
+            }
         }
         println(percentage)
         return (percentage, found)

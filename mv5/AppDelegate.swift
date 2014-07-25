@@ -68,32 +68,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
         let hID = notification.userInfo["habitID"]! as Int
-        let predDisplayHaibit: NSPredicate = NSPredicate(format: "habitID = %@", argumentArray: [hID])
-        fRDisplayHabit.predicate = predDisplayHaibit
+        fRDisplayHabit.predicate = NSPredicate(format: "habitID = %@", argumentArray: [hID])
         
         let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
-        let searchHistoryText = [getCurrentDate()]
-        let predHistory: NSPredicate = NSPredicate(format: "date = %@", argumentArray: searchHistoryText)
-        fRUserHistory.predicate = predHistory
+        fRUserHistory.predicate = NSPredicate(format: "date = %@", argumentArray: [getCurrentDate()])
         
         var userChosenHabitList = context.executeFetchRequest(fRChosenHabit, error:nil)
         var userDisplayHabitList = context.executeFetchRequest(fRDisplayHabit, error:nil)
-        var UserHistory = context.executeFetchRequest(fRUserHistory, error:nil)
-        
+        var UserHistory: [HistoryEntry] = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
+       
         if (identifier == "COMPLETE_ACTION"){
             println("identifier == COMPLETE_ACTION")
             // Upadate the entity UserHistory
-            if (UserHistory.count != 0) {
-                // There is already an entry for current day in the entity UserHistory
-                var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
-                historyEntry = UserHistory[0] as HistoryEntry
-                historyEntry.increaseCompleted()
-            } else {
+            if (UserHistory.count == 0) {
                 // There is not yet an entry for current day in the entity UserHistory
-                var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
-                historyEntry.reset()
-                historyEntry.totalCount = userChosenHabitList.count as NSNumber
-                historyEntry.increaseCompleted()
+                insertUserHistory(true, totalCount: userChosenHabitList.count)
+            } else {
+                // There is already an entry for current day in the entity UserHistory
+                UserHistory[0].increaseCompleted()
             }
             // Upadate the entity UserDisplayHabit
             userDisplayHabitList[0].setValue(true, forKey: "isCompleted")
@@ -103,9 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Upadate the entity UserHistory
             if (UserHistory.count == 0) {
                 // There is not yet an entry for current day in the entity UserHistory
-                var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
-                historyEntry.reset()
-                historyEntry.totalCount = userChosenHabitList.count as NSNumber
+                insertUserHistory(false, totalCount: userChosenHabitList.count)
             }
             
             // Delay the corresponding notification for 1 hour
@@ -257,5 +247,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return currentCalendar.dateFromComponents(components)
     }
 
+    func insertUserHistory (isCompleted: Bool, totalCount: Int) {
+        let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        let context: NSManagedObjectContext = appDel.managedObjectContext
+        let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
+        if (isCompleted) {
+            var historyEntry = HistoryEntry(completedCount: 1, date: NSDate(), totalCount: totalCount, entity: eNUserHistory, insertIntoManagedObjectContext: context)
+            println("newHistoryEntry: \(historyEntry)")
+        } else {
+            var historyEntry = HistoryEntry(completedCount: 0, date: NSDate(), totalCount: totalCount, entity: eNUserHistory, insertIntoManagedObjectContext: context)
+            println("newHistoryEntry: \(historyEntry)")
+        }
+        context.save(nil)
+    }
+    
 }
-

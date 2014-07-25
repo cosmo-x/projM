@@ -63,7 +63,7 @@ class HabitListController: UITableViewController {
             var tempID = selectedHabits.valueForKeyPath("habitID") as Int
             HabitChosenArray[tempID] = true
         }
-        tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,21 +88,17 @@ class HabitListController: UITableViewController {
 
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-//        let CellID: NSString = "HabitListCell"
-//        var cell: HabitListCell = tableView?.dequeueReusableCellWithIdentifier(CellID) as HabitListCell
-        
         var cell:HabitListCell = tableView.dequeueReusableCellWithIdentifier("HabitListCell", forIndexPath: indexPath) as HabitListCell
-        
         if let ip = indexPath {
             cell.HabitID = ip.row as Int
             cell.lbHabit.text = DictionaryHaibitList[ip.row]! as String
             cell.swHabitIsChosen.on = HabitChosenArray[ip.row]
+            cell.imgHabit.image = UIImage(named: "iconHabit\(cell.HabitID!)")
             if (true == cell.swHabitIsChosen.on) {
                 cell.lbCellTip.text = txtCellIsChosen
             } else {
                 cell.lbCellTip.text = txtCellNotChosen
             }
-            cell.imgHabit.image = UIImage(named: "iconHabit\(cell.HabitID!)")
         }
         return cell
     }

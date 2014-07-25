@@ -16,13 +16,18 @@ class HistoryEntry: NSManagedObject {
     @NSManaged var monthIndex: NSNumber
     @NSManaged var totalCount: NSNumber
     
-    func reset() {
+    init(entity: NSEntityDescription!, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
+    }
+    
+    init(completedCount: Int, date: NSDate, totalCount: Int, entity: NSEntityDescription!, insertIntoManagedObjectContext context: NSManagedObjectContext!) {
+        super.init(entity: entity, insertIntoManagedObjectContext: context)
         let currentCalendar = NSCalendar.currentCalendar()
-        let components: NSDateComponents = currentCalendar.components (.CalendarUnitYear | .CalendarUnitMonth | .CalendarUnitDay , fromDate: NSDate())
-        self.date = currentCalendar.dateFromComponents(components)
-        self.completedCount = 0
+        let components: NSDateComponents = currentCalendar.components (.CalendarUnitYear | .CalendarUnitMonth, fromDate: date)
+        self.completedCount = completedCount
+        self.date = date
         self.monthIndex = components.year * 12 + components.month
-        self.totalCount = 0
+        self.totalCount = totalCount
     }
     
     func decreaseCompleted() {

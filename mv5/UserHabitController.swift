@@ -39,9 +39,9 @@ class UserHabitController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         let appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context:NSManagedObjectContext = appDel.managedObjectContext
-        
-        var fRChosenHabit = NSFetchRequest(entityName: "UserChosenHabit")
-        var fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
+        let eNDisplayHabit = NSEntityDescription.entityForName("UserDisplayHabit",inManagedObjectContext:context)
+        let fRChosenHabit = NSFetchRequest(entityName: "UserChosenHabit")
+        let fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
         
         userChosenHabitList = context.executeFetchRequest(fRChosenHabit, error:nil)
         userDisplayHabitList = context.executeFetchRequest(fRDisplayHabit, error:nil)
@@ -51,15 +51,31 @@ class UserHabitController: UITableViewController {
         
         var userChosenHabitListCount: Int = userChosenHabitList.count
         var userDisplayHabitListCount: Int = userDisplayHabitList.count
-        
         var allDisplayHabitDone: Bool = true
         
         if (userChosenHabitListCount == 0) {
             // No habit is chosen by user
             StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgStart"))
-        } else if (userDisplayHabitListCount == 0) {
-            StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
+        } else if (isTodayNew()) {
+            // It is a new day today
+            // Update userDisplayHabitList
+            userDisplayHabitList.removeAll(keepCapacity: false)
+            for (var i = 0; i < userChosenHabitListCount; ++i) {
+                var selectedHabit: NSManagedObject = userChosenHabitList[i] as NSManagedObject
+                var hID = selectedHabit.valueForKeyPath("habitID") as Int
+                var hName = selectedHabit.valueForKeyPath("habitName") as String
+                var newDisplayHabit = Habit(entity: eNDisplayHabit, insertIntoManagedObjectContext: context)
+                newDisplayHabit.setValue(hID, forKey: "habitID")
+                newDisplayHabit.setValue(hName, forKey: "habitName")
+                newDisplayHabit.setValue(false, forKey: "isCompleted")
+                userDisplayHabitList.append(newDisplayHabit)
+            }
+            context.save(nil)
+            // Create new historyEntry
+            insertUserHistory(userChosenHabitListCount)
+            StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgEmpty"))
         } else {
+            // It is not a new day today
             for (var i = 0; i < userDisplayHabitListCount; ++i) {
                 var data: NSManagedObject = userDisplayHabitList[i] as NSManagedObject
                 if ((data.valueForKeyPath("isCompleted") as Bool?) == false) {
@@ -76,6 +92,27 @@ class UserHabitController: UITableViewController {
         }
         self.tableView.reloadData()
     }
+    
+        
+        
+//        } else if (userDisplayHabitListCount == 0) {
+//            StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
+//        } else {
+//            for (var i = 0; i < userDisplayHabitListCount; ++i) {
+//                var data: NSManagedObject = userDisplayHabitList[i] as NSManagedObject
+//                if ((data.valueForKeyPath("isCompleted") as Bool?) == false) {
+//                    allDisplayHabitDone = false
+//                    break
+//                }
+//            }
+//            if (true == allDisplayHabitDone) {
+//                StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
+//            }
+//            else {
+//                StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgEmpty"))
+//            }
+//        }
+//        self.tableView.reloadData()
     
 
     override func didReceiveMemoryWarning() {
@@ -110,7 +147,6 @@ class UserHabitController: UITableViewController {
         } else {
             return userDisplayHabitList.count
         }
-        
     }
 
     
@@ -131,7 +167,6 @@ class UserHabitController: UITableViewController {
                 cell.imgCheck.image = UIImage(named: "iconUnchecked")
             }
         }
-        
         return cell
     }
     
@@ -145,17 +180,14 @@ class UserHabitController: UITableViewController {
     
     // Override to support editing the table view.
     override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath?) {
-        
         let appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context:NSManagedObjectContext = appDel.managedObjectContext
-
-        var fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
+        let fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
         
         var cell: UserHabitCell = tableView.dequeueReusableCellWithIdentifier("UserHabitCell", forIndexPath: indexPath) as UserHabitCell
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
             // Delete the row from the data source
-
             if let tV = tableView {
                 // Delete the corresponding notification
                 if (cell.HabitID) {
@@ -167,7 +199,7 @@ class UserHabitController: UITableViewController {
                 
                 userDisplayHabitList = context.executeFetchRequest(fRDisplayHabit, error:nil)
                 
-                var updatedCount = userDisplayHabitList.count
+                let updatedCount = userDisplayHabitList.count
                 if (0 == updatedCount) {
                     StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
                 } else {
@@ -191,6 +223,7 @@ class UserHabitController: UITableViewController {
     
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let theSelectedCell: UserHabitCell = tableView.cellForRowAtIndexPath(indexPath) as UserHabitCell
+        let hID = theSelectedCell.HabitID! as Int
         if (txtCellIsChosen != theSelectedCell.lbCellTip.text) {
             // Only select the cell if the cell is not yet selected
             println("cell select")
@@ -199,15 +232,28 @@ class UserHabitController: UITableViewController {
             
             // Delete the corresponding notification
             if (theSelectedCell.HabitID) {
-                deleteTodayNotification(theSelectedCell.HabitID!)
+                deleteTodayNotification(hID)
             }
             
             let appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
             let context:NSManagedObjectContext = appDel.managedObjectContext
             let eNDisplayHabit = NSEntityDescription.entityForName("UserDisplayHabit",inManagedObjectContext:context)
-            var fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
+            let fRChosenHabit = NSFetchRequest(entityName: "UserChosenHabit")
+            let fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
+            fRChosenHabit.predicate = NSPredicate(format: "habitID = %@", argumentArray: [hID])
+            fRDisplayHabit.predicate = NSPredicate(format: "habitID = %@", argumentArray: [hID])
             
-            userDisplayHabitList[indexPath!.row].setValue(true, forKey: "isCompleted")
+            var theChosenHabit: [Habit] = context.executeFetchRequest(fRChosenHabit, error:nil) as [Habit]
+            var theDisplayHabit: [Habit] = context.executeFetchRequest(fRDisplayHabit, error:nil) as [Habit]
+            
+            if (0 != theChosenHabit.count) {
+                theChosenHabit[0].isCompleted = true
+            }
+            if (0 != theDisplayHabit.count) {
+                theDisplayHabit[0].isCompleted = true
+            }
+            context.save(nil)
+//            userDisplayHabitList[indexPath!.row].setValue(true, forKey: "isCompleted")
             
             // Check if all the DisplayHabits are completed
             var allCompleted: Bool = true
@@ -221,34 +267,10 @@ class UserHabitController: UITableViewController {
             if (true == allCompleted) {
                 StartPageView.backgroundView = UIImageView(image: UIImage(named: "imgCompleted"))
             }
-            context.save(nil)
-            
-            updateUserHistory()
+            updateUserHistory(userDisplayHabitList.count)
         }
-            self.tableView.reloadData()
+        self.tableView.reloadData()
     }
-    
-//    override func tableView(tableView: UITableView!, didDeselectRowAtIndexPath indexPath: NSIndexPath!) {
-//        println("Disselect cell \(indexPath!.row) to uncomplete")
-//        
-//        let appDel:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-//        let context:NSManagedObjectContext = appDel.managedObjectContext
-//        var fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
-//        
-//        let theSelectedCell: UserHabitCell = tableView.cellForRowAtIndexPath(indexPath) as UserHabitCell
-//        theSelectedCell.CellTip.text = txtCellNotChosen
-//        theSelectedCell.CellImage.image = UIImage(named: "iconUnchecked")
-//        
-//        println("didDeselectRowAtIndexPath")
-//        userDisplayHabitList[indexPath!.row].setValue(false, forKey: "isCompleted")
-//
-//        context.save(nil)
-//        self.tableView.reloadData()
-//        
-//    }
-    
-    
-    
     
     /*
     // Override to support rearranging the table view.
@@ -306,34 +328,51 @@ class UserHabitController: UITableViewController {
         }
         println("AFTER deleteTodayNotification: \(UIApplication.sharedApplication().scheduledLocalNotifications)")
     }
-        
-    func updateUserHistory() {
+    
+    func isTodayNew() -> Bool {
         let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
         let context: NSManagedObjectContext = appDel.managedObjectContext
         let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
-        let searchText = [getCurrentDate()]
-        
-        var pred: NSPredicate = NSPredicate(format: "date = %@", argumentArray: searchText)        
-        var fRUserHistory = NSFetchRequest(entityName: "UserHistory")
+        let pred: NSPredicate = NSPredicate(format: "date = %@", argumentArray: [getCurrentDate()])
+        let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
         fRUserHistory.predicate = pred
         
-        var UserHistory = context.executeFetchRequest(fRUserHistory, error:nil)
+        let UserHistory = context.executeFetchRequest(fRUserHistory, error:nil)
         
-        if (UserHistory.count != 0) {
-            // There is already an entry in the entity UserHistory
-            var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
-            historyEntry = UserHistory[0] as HistoryEntry
-            historyEntry.increaseCompleted()
-        } else {
+        return (UserHistory.count == 0) ? true: false
+    }
+    
+    func insertUserHistory (tCount: Int) {
+        let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        let context: NSManagedObjectContext = appDel.managedObjectContext
+        let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
+        let historyEntry = HistoryEntry(completedCount: 0, date: getCurrentDate(), totalCount: tCount, entity: eNUserHistory, insertIntoManagedObjectContext: context)
+        println("newHistoryEntry: \(historyEntry)")
+        context.save(nil)
+    }
+    
+    func updateUserHistory(totalCount: Int) {
+        let appDel: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        let context: NSManagedObjectContext = appDel.managedObjectContext
+        let eNUserHistory = NSEntityDescription.entityForName("UserHistory", inManagedObjectContext:context)
+        
+        let pred: NSPredicate = NSPredicate(format: "date = %@", argumentArray: [getCurrentDate()])
+        let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
+        fRUserHistory.predicate = pred
+        
+        var UserHistory: [HistoryEntry] = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
+        
+        if (0 == UserHistory.count) {
             // There is not yet an entry in the entity UserHistory
-            var historyEntry = HistoryEntry(entity: eNUserHistory, insertIntoManagedObjectContext: context)
-            historyEntry.reset()
-            historyEntry.totalCount = userChosenHabitList.count as NSNumber
-            historyEntry.increaseCompleted()
+            insertUserHistory(totalCount)
+            UserHistory = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
+        } else {
+            // There is already an entry in the entity UserHistory
+            UserHistory[0].increaseCompleted()
         }
         context.save(nil)
-        UserHistory = context.executeFetchRequest(fRUserHistory, error:nil)
-        println(UserHistory)
+        UserHistory = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
+        println("Updated UserHistory \(UserHistory)")
     }
 
 }

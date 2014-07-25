@@ -13,7 +13,6 @@ import CoreData
 class Habit: NSManagedObject {
     @NSManaged var habitID: NSNumber
     @NSManaged var habitName: String
-    @NSManaged var isChosen: NSNumber
-    @NSManaged var isCompleted: NSNumber
+    @NSManaged var isCompleted: Bool
     @NSManaged var noteTime: NSDate
 }
