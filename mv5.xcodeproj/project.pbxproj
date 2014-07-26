@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D06103F1983245F009F0D9A /* Champagne & Limousines.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D06103E1983245F009F0D9A /* Champagne & Limousines.ttf */; };
 		6D25258C196B672200932F2A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D25258B196B672200932F2A /* AppDelegate.swift */; };
 		6D25258F196B672200932F2A /* mv5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6D25258D196B672200932F2A /* mv5.xcdatamodeld */; };
 		6D252591196B672200932F2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D252590196B672200932F2A /* Images.xcassets */; };
@@ -64,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6D06103E1983245F009F0D9A /* Champagne & Limousines.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Champagne & Limousines.ttf"; sourceTree = "<group>"; };
 		6D252586196B672200932F2A /* mv5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mv5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D25258A196B672200932F2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6D25258B196B672200932F2A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		6D252589196B672200932F2A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6D06103E1983245F009F0D9A /* Champagne & Limousines.ttf */,
 				6D25258A196B672200932F2A /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -311,6 +314,7 @@
 			files = (
 				6D252591196B672200932F2A /* Images.xcassets in Resources */,
 				6D2525A7196B673600932F2A /* main.storyboard in Resources */,
+				6D06103F1983245F009F0D9A /* Champagne & Limousines.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,6 +597,7 @@
 				6D890C4A1982457F00C72A33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

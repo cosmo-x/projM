@@ -43,7 +43,7 @@ class HabitListController: UITableViewController {
     let txtCellNotChosen = "Tap to choose"
     
     var HabitListArrary : Array <Int> = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
-    var HabitChosenArray : Array <Bool>= [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    var HabitChosenArray : Array <Bool> = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,10 +57,9 @@ class HabitListController: UITableViewController {
         let fRChosenHabit = NSFetchRequest(entityName: "UserChosenHabit")
         let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
         
-        var Habits  = context.executeFetchRequest(fRChosenHabit, error:nil)
-        for (var i = 0 as Int; i < Habits.count; ++i) {
-            var selectedHabits: NSManagedObject = Habits[i] as NSManagedObject
-            var tempID = selectedHabits.valueForKeyPath("habitID") as Int
+        var chosenHabit: [Habit] = context.executeFetchRequest(fRChosenHabit, error:nil) as [Habit]
+        for (var i = 0 as Int; i < chosenHabit.count; ++i) {
+            let tempID = chosenHabit[i].valueForKeyPath("habitID") as Int
             HabitChosenArray[tempID] = true
         }
         self.tableView.reloadData()
@@ -89,16 +88,15 @@ class HabitListController: UITableViewController {
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         var cell:HabitListCell = tableView.dequeueReusableCellWithIdentifier("HabitListCell", forIndexPath: indexPath) as HabitListCell
-        if let ip = indexPath {
-            cell.HabitID = ip.row as Int
-            cell.lbHabit.text = DictionaryHaibitList[ip.row]! as String
-            cell.swHabitIsChosen.on = HabitChosenArray[ip.row]
-            cell.imgHabit.image = UIImage(named: "iconHabit\(cell.HabitID!)")
-            if (true == cell.swHabitIsChosen.on) {
-                cell.lbCellTip.text = txtCellIsChosen
-            } else {
-                cell.lbCellTip.text = txtCellNotChosen
-            }
+
+        cell.HabitID = indexPath.row as Int
+        cell.lbHabit.text = DictionaryHaibitList[indexPath.row]! as String
+        cell.swHabitIsChosen.on = HabitChosenArray[indexPath.row]
+        cell.imgHabit.image = UIImage(named: "iconHabit\(cell.HabitID!)")
+        if (true == cell.swHabitIsChosen.on) {
+            cell.lbCellTip.text = txtCellIsChosen
+        } else {
+            cell.lbCellTip.text = txtCellNotChosen
         }
         return cell
     }

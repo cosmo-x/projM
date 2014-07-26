@@ -24,6 +24,8 @@
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>main</string>
+	<key>ATSApplicationFontsPath</key>
+	<string>Champagne &amp; Limousines.ttf</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
