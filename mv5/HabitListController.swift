@@ -37,13 +37,13 @@ let DictionaryHaibitList = [
     24: "Pursue your dreams"
 ]
 
+var HabitListArrary : Array <Int> = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
+var HabitChosenArray : Array <Bool> = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+
 class HabitListController: UITableViewController {
     
     let txtCellIsChosen = "Tap to unchoose"
     let txtCellNotChosen = "Tap to choose"
-    
-    var HabitListArrary : Array <Int> = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
-    var HabitChosenArray : Array <Bool> = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -77,6 +77,7 @@ class HabitListCell: UITableViewCell {
                 }
             }
             chosenHabits = context.executeFetchRequest(fRChosenHabit, error:nil) as [Habit]
+            HabitChosenArray[hID] = swHabitIsChosen.on
         }
     }
     
