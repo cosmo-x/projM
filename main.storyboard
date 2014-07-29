@@ -100,7 +100,7 @@
             <objects>
                 <tableViewController clearsSelectionOnViewWillAppear="NO" id="VUD-9q-9pc" customClass="UserHabitController" customModule="mv5" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="71" sectionHeaderHeight="22" sectionFooterHeight="22" id="Pw9-1C-QAn">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -182,7 +182,7 @@
                     <navigationItem key="navigationItem" id="Fi3-Qu-p7V"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="bOA-UI-BPn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="bOA-UI-BPn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -213,24 +213,11 @@
             <objects>
                 <viewController modalPresentationStyle="currentContext" id="IZk-2N-TZr" customClass="SettingsViewController" customModule="mv5" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tkt-nR-aol">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="183-9U-BFp" userLabel="barLong">
-                                <rect key="frame" x="0.0" y="64" width="320" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 22 - July 28" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="One-9c-Pbi" userLabel="lbTime Period">
-                                <rect key="frame" x="0.0" y="65" width="320" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="69%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BqO-qr-neP" userLabel="lbPeriodPercentage">
-                                <rect key="frame" x="0.0" y="91" width="320" height="23"/>
+                                <rect key="frame" x="0.0" y="27" width="320" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -239,42 +226,42 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stBar0" id="ujM-RK-qrm" userLabel="imgBarSunday">
-                                <rect key="frame" x="15" y="126" width="17" height="50"/>
+                                <rect key="frame" x="15" y="61" width="17" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.7722764584939229" blue="0.77397201839172114" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stBar0" id="pY6-fa-xeA" userLabel="imgBarMonday">
-                                <rect key="frame" x="61" y="126" width="17" height="50"/>
+                                <rect key="frame" x="61" y="61" width="17" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.7722764584939229" blue="0.77397201839172114" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stBar0" id="44M-FO-bya" userLabel="imgBarTuesday">
-                                <rect key="frame" x="107" y="126" width="17" height="50"/>
+                                <rect key="frame" x="107" y="61" width="17" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.7722764584939229" blue="0.77397201839172114" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stBar0" id="m9Y-lL-DYL" userLabel="imgBarThursday">
-                                <rect key="frame" x="199" y="126" width="17" height="50"/>
+                                <rect key="frame" x="199" y="61" width="17" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.7722764584939229" blue="0.77397201839172114" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stBar0" id="WzZ-iR-e9w" userLabel="imgBarFriday">
-                                <rect key="frame" x="245" y="126" width="17" height="50"/>
+                                <rect key="frame" x="245" y="61" width="17" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.7722764584939229" blue="0.77397201839172114" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stBar0" id="ilc-HP-8pi" userLabel="imgBarSaturday">
-                                <rect key="frame" x="287" y="126" width="17" height="50"/>
+                                <rect key="frame" x="287" y="61" width="17" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.7722764584939229" blue="0.77397201839172114" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stBar0" id="y7t-Py-fUd" userLabel="imgBarWednesday">
-                                <rect key="frame" x="153" y="126" width="17" height="50"/>
+                                <rect key="frame" x="153" y="61" width="17" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.7722764584939229" blue="0.77397201839172114" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wg0-OY-FrB" userLabel="lbSunday">
-                                <rect key="frame" x="0.0" y="183" width="46" height="35"/>
+                                <rect key="frame" x="0.0" y="126" width="46" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
@@ -282,7 +269,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="met-74-nue" userLabel="lbMonday">
-                                <rect key="frame" x="46" y="183" width="46" height="35"/>
+                                <rect key="frame" x="46" y="126" width="46" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
@@ -290,7 +277,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h9O-Lx-dsW" userLabel="lbTuesday">
-                                <rect key="frame" x="92" y="183" width="46" height="35"/>
+                                <rect key="frame" x="92" y="126" width="46" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
@@ -298,7 +285,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aVn-Ky-Nzk" userLabel="lbWednesday">
-                                <rect key="frame" x="138" y="183" width="46" height="35"/>
+                                <rect key="frame" x="138" y="126" width="46" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
@@ -306,7 +293,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="thu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h4r-fg-enn" userLabel="lbThursday">
-                                <rect key="frame" x="184" y="183" width="46" height="35"/>
+                                <rect key="frame" x="184" y="126" width="46" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
@@ -314,7 +301,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pb3-QX-KWO" userLabel="lbFriday">
-                                <rect key="frame" x="230" y="183" width="46" height="35"/>
+                                <rect key="frame" x="230" y="126" width="46" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
@@ -322,7 +309,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="doD-K9-E1x" userLabel="lbSaturday">
-                                <rect key="frame" x="274" y="183" width="46" height="35"/>
+                                <rect key="frame" x="274" y="126" width="46" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
@@ -330,54 +317,59 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This Month" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R9h-Hi-jxW" userLabel="lbThisMonth">
-                                <rect key="frame" x="133" y="311" width="55" height="46"/>
+                                <rect key="frame" x="133" y="256" width="55" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This Week" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1pc-Hm-LIM" userLabel="lbThisWeek">
-                                <rect key="frame" x="236" y="311" width="50" height="46"/>
+                                <rect key="frame" x="236" y="256" width="50" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stCircle0" id="cPB-xz-K9e" userLabel="imgAllTIme">
-                                <rect key="frame" x="31" y="236" width="70" height="70"/>
+                                <rect key="frame" x="31" y="181" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stCircle0" id="gL5-iM-Z6D" userLabel="imgThisMonth">
-                                <rect key="frame" x="126" y="236" width="70" height="70"/>
+                                <rect key="frame" x="126" y="181" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stCircle0" id="UR6-wK-Cvw" userLabel="imgThisWeek">
-                                <rect key="frame" x="226" y="236" width="70" height="70"/>
+                                <rect key="frame" x="226" y="181" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="45%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="njg-Nz-32V" userLabel="lbStatsAllTime">
-                                <rect key="frame" x="45" y="260" width="42" height="21"/>
+                                <rect key="frame" x="45" y="205" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="46%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qfj-Ih-Pe6" userLabel="lbStatsThisMonth">
-                                <rect key="frame" x="140" y="260" width="42" height="21"/>
+                                <rect key="frame" x="140" y="205" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="43%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nxz-7N-x90" userLabel="lbStatsThisWeek">
-                                <rect key="frame" x="240" y="260" width="42" height="21"/>
+                                <rect key="frame" x="240" y="205" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="18"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="eoZ-bJ-Uhq" userLabel="barLong">
+                                <rect key="frame" x="0.0" y="310" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yr0-fb-kM5" userLabel="TVCBell">
-                                <rect key="frame" x="0.0" y="366" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="310" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yr0-fb-kM5" id="JzO-t4-IHr">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -401,8 +393,13 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pwS-dz-3gm" userLabel="barShort">
+                                <rect key="frame" x="60" y="347" width="260" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Tw8-m9-M1D" userLabel="TVCPlug">
-                                <rect key="frame" x="1" y="403" width="320" height="40"/>
+                                <rect key="frame" x="1" y="347" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tw8-m9-M1D" id="Bvj-zV-R0N">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -426,8 +423,13 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="lxk-C2-ipl" userLabel="barShort">
+                                <rect key="frame" x="60" y="384" width="260" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="46n-js-A7J" userLabel="TVCMail">
-                                <rect key="frame" x="0.0" y="440" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="384" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="46n-js-A7J" id="whr-Sc-KGw">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -453,8 +455,13 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="hCT-bH-at5" userLabel="barShort">
+                                <rect key="frame" x="60" y="422" width="260" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hJr-Xl-wbe" userLabel="TVCStar">
-                                <rect key="frame" x="0.0" y="479" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="419" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hJr-Xl-wbe" id="rYE-fT-6OQ">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -480,8 +487,13 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="U1b-cL-eow" userLabel="barShort">
+                                <rect key="frame" x="61" y="458" width="260" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="5sx-e2-ZwF" userLabel="TVCBulleye">
-                                <rect key="frame" x="0.0" y="517" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="457" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5sx-e2-ZwF" id="kIi-0Z-Ha3">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -510,41 +522,24 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="eoZ-bJ-Uhq" userLabel="barLong">
-                                <rect key="frame" x="0.0" y="366" width="320" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pwS-dz-3gm" userLabel="barShort">
-                                <rect key="frame" x="60" y="403" width="260" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="lxk-C2-ipl" userLabel="barShort">
-                                <rect key="frame" x="60" y="440" width="260" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="hCT-bH-at5" userLabel="barShort">
-                                <rect key="frame" x="60" y="478" width="260" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="U1b-cL-eow" userLabel="barShort">
-                                <rect key="frame" x="61" y="516" width="260" height="1"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="QvT-mt-ifm" userLabel="barLong">
-                                <rect key="frame" x="1" y="558" width="320" height="1"/>
+                                <rect key="frame" x="0.0" y="498" width="320" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Time" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MUu-uw-Mtj" userLabel="lbAllTime">
-                                <rect key="frame" x="44" y="311" width="44" height="46"/>
+                                <rect key="frame" x="44" y="256" width="44" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
                                 <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 22 - July 28" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="One-9c-Pbi" userLabel="lbTime Period">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Champagne&amp;Limousines" family="Champagne &amp; Limousines" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
