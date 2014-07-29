@@ -307,6 +307,8 @@ class SettingsViewController: UIViewController {
         let fRDisplayHabit = NSFetchRequest(entityName: "UserDisplayHabit")
         let fRUserHistory = NSFetchRequest(entityName: "UserHistory")
         
+        HabitChosenArray = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+        
         let userChosenHabit: [Habit] = context.executeFetchRequest(fRChosenHabit, error:nil) as [Habit]
         let userDisplayHabit: [Habit] = context.executeFetchRequest(fRDisplayHabit, error:nil) as [Habit]
         let userHistory: [HistoryEntry] = context.executeFetchRequest(fRUserHistory, error:nil) as [HistoryEntry]
