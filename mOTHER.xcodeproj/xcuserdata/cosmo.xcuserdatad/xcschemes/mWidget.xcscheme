@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D890C0519823B4D00C72A33"
+               BlueprintIdentifier = "6D890C391982457F00C72A33"
                BuildableName = "mWidget.appex"
                BlueprintName = "mWidget"
-               ReferencedContainer = "container:mv5.xcodeproj">
+               ReferencedContainer = "container:mOTHER.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,9 +30,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6D252585196B672200932F2A"
-               BuildableName = "mv5.app"
-               BlueprintName = "mv5"
-               ReferencedContainer = "container:mv5.xcodeproj">
+               BuildableName = "mOTHER.app"
+               BlueprintName = "mOTHER"
+               ReferencedContainer = "container:mOTHER.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,10 +47,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6D890C0519823B4D00C72A33"
+            BlueprintIdentifier = "6D890C391982457F00C72A33"
             BuildableName = "mWidget.appex"
             BlueprintName = "mWidget"
-            ReferencedContainer = "container:mv5.xcodeproj">
+            ReferencedContainer = "container:mOTHER.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -68,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6D252585196B672200932F2A"
-            BuildableName = "mv5.app"
-            BlueprintName = "mv5"
-            ReferencedContainer = "container:mv5.xcodeproj">
+            BuildableName = "mOTHER.app"
+            BlueprintName = "mOTHER"
+            ReferencedContainer = "container:mOTHER.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -87,9 +87,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6D252585196B672200932F2A"
-            BuildableName = "mv5.app"
-            BlueprintName = "mv5"
-            ReferencedContainer = "container:mv5.xcodeproj">
+            BuildableName = "mOTHER.app"
+            BlueprintName = "mOTHER"
+            ReferencedContainer = "container:mOTHER.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

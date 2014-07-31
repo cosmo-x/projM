@@ -30,13 +30,13 @@
         <!--Habits-->
         <scene sceneID="hlE-OO-OKa">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="vEw-cE-U6W" customClass="HabitListController" customModule="mv5" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="vEw-cE-U6W" customClass="HabitListController" customModule="mOTHER" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" delaysContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="71" sectionHeaderHeight="22" sectionFooterHeight="22" id="Fan-S9-MKG">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="separatorColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="HabitListCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="HabitListCell" rowHeight="71" id="kxA-md-mO6" customClass="HabitListCell" customModule="mv5">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="HabitListCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="HabitListCell" rowHeight="71" id="kxA-md-mO6" customClass="HabitListCell" customModule="mOTHER">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kxA-md-mO6" id="6lq-EJ-F73">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -98,14 +98,14 @@
         <!--mOTHER-->
         <scene sceneID="3t7-Cs-UwK">
             <objects>
-                <tableViewController clearsSelectionOnViewWillAppear="NO" id="VUD-9q-9pc" customClass="UserHabitController" customModule="mv5" sceneMemberID="viewController">
+                <tableViewController clearsSelectionOnViewWillAppear="NO" id="VUD-9q-9pc" customClass="UserHabitController" customModule="mOTHER" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="71" sectionHeaderHeight="22" sectionFooterHeight="22" id="Pw9-1C-QAn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell alpha="0.0" contentMode="scaleToFill" restorationIdentifier="UserHabitCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserHabitCell" rowHeight="71" id="vJW-Ai-uld" customClass="UserHabitCell" customModule="mv5">
+                            <tableViewCell alpha="0.0" contentMode="scaleToFill" restorationIdentifier="UserHabitCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserHabitCell" rowHeight="71" id="vJW-Ai-uld" customClass="UserHabitCell" customModule="mOTHER">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vJW-Ai-uld" id="pKG-bM-tSU">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -211,7 +211,7 @@
         <!--Settings-->
         <scene sceneID="X7S-MF-iYT">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="IZk-2N-TZr" customClass="SettingsViewController" customModule="mv5" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="IZk-2N-TZr" customClass="SettingsViewController" customModule="mOTHER" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tkt-nR-aol">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

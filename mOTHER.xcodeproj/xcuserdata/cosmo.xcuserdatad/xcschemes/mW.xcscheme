@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "0600"
+   wasCreatedForAppExtension = "YES"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +15,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6D890C211982412D00C72A33"
+               BuildableName = "mW.appex"
+               BlueprintName = "mW"
+               ReferencedContainer = "container:mOTHER.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "6D252585196B672200932F2A"
-               BuildableName = "mv5.app"
-               BlueprintName = "mv5"
-               ReferencedContainer = "container:mv5.xcodeproj">
+               BuildableName = "mOTHER.app"
+               BlueprintName = "mOTHER"
+               ReferencedContainer = "container:mOTHER.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,31 +43,22 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6D252595196B672200932F2A"
-               BuildableName = "mv5Tests.xctest"
-               BlueprintName = "mv5Tests"
-               ReferencedContainer = "container:mv5.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6D252585196B672200932F2A"
-            BuildableName = "mv5.app"
-            BlueprintName = "mv5"
-            ReferencedContainer = "container:mv5.xcodeproj">
+            BlueprintIdentifier = "6D890C211982412D00C72A33"
+            BuildableName = "mW.appex"
+            BlueprintName = "mW"
+            ReferencedContainer = "container:mOTHER.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
    <LaunchAction
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
+      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
@@ -62,9 +68,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6D252585196B672200932F2A"
-            BuildableName = "mv5.app"
-            BlueprintName = "mv5"
-            ReferencedContainer = "container:mv5.xcodeproj">
+            BuildableName = "mOTHER.app"
+            BlueprintName = "mOTHER"
+            ReferencedContainer = "container:mOTHER.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,14 +81,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
-      debugDocumentVersioning = "YES">
+      debugDocumentVersioning = "YES"
+      askForAppToLaunch = "Yes">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6D252585196B672200932F2A"
-            BuildableName = "mv5.app"
-            BlueprintName = "mv5"
-            ReferencedContainer = "container:mv5.xcodeproj">
+            BuildableName = "mOTHER.app"
+            BlueprintName = "mOTHER"
+            ReferencedContainer = "container:mOTHER.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
